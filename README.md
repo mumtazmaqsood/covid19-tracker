@@ -1,7 +1,7 @@
 # COVID-19 TRACKER APP
-    <h1>App URL</h1>
-    <h2>http://covid19-meter.surge.sh/</h2>
-    
+    # App URL
+    # http://covid19-meter.surge.sh/
+
     Shows Live Cases, Recoveries, Deaths (clickable tabs)
     Shows Worldwide cases and Country Based cases
     Line Chart shows fluctuations over days, hover around to see exact figures (Not implemented yet)
