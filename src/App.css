@@ -7,20 +7,22 @@ body {
 
 .app {
   display: flex;
-  justify-content: space-evenly;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 15px;
+  
 }
 
-/* left side will be 90% */
-.app_left{
-  flex: 0.9;
+/* right side will be 90% */
+.app_right{
+  flex: 0.95;
 }
+
 
 
 .app_header{
   display: flex;
   align-items: center;
-  margin: 20px;
+  margin: 5px;
   justify-content: space-between;
 }
 

@@ -11,6 +11,8 @@ import { InfoBox } from './InfoBox';
 import { TableData } from './TableData';
 import { sortData } from './util';
 import { LineGraph } from './LineGraph';
+import {LineGraph1} from './LineGraph1';
+
 
 import Map from './Map';
 
@@ -58,6 +60,7 @@ function App() {
 
           const sortedData = sortData(data);
           setTableData(sortedData);
+          setMapCountries(data)
           setCountries(countries);
         });
 
@@ -93,7 +96,20 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app_left">
+
+      {/*right panel of the app  */}
+      <Card className="app_left">
+        <CardContent>
+          <h3>Live Cases by Country</h3>
+          <TableData countries={tableData} />
+          <h3>World Wide new Cases {casesType} </h3>
+          {/* <LineGraph casesType={casesType} /> */}
+          <LineGraph1 casesType={casesType}  />
+        </CardContent>
+
+      </Card>
+
+      <div className="app_right">
         <div className="app_header">
           <h1>Covid-19 Tracker</h1>
           <FormControl className="app_dropdown">
@@ -119,16 +135,7 @@ function App() {
         <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
 
-      {/*right panel of the app  */}
-      <Card className="app_right">
-        <CardContent>
-          <h3>Live Cases by Country</h3>
-          <TableData countries={tableData} />
-          <h3>World Wide new Cases {casesType} </h3>
-          <LineGraph casesType={casesType} />
-        </CardContent>
-
-      </Card>
+      
     </div>
   );
 }
