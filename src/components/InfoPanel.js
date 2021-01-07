@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { apiFetch } from '../Api/ApiFetch';
+//import { apiFetch } from '../Api/ApiFetch';
 
 
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function InfoPanel() {
   const classes = useStyles();
 
-  const [summary, setSummary] = useState([])
+  //const [summary, setSummary] = useState([])
 
   useEffect( () => {
     const apiData = async () => {

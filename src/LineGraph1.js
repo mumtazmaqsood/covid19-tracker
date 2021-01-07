@@ -1,8 +1,7 @@
-import { keys } from '@material-ui/core/styles/createBreakpoints';
-import { ArrowRight } from '@material-ui/icons';
-import numeral, { set } from 'numeral';
+
+import numeral  from 'numeral';
 import React, { useEffect, useState } from 'react';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 
 

@@ -1,6 +1,4 @@
 import './App.css';
-import NavBar from './components/NavBar';
-import InfoPanel from './components/InfoPanel';
 import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import "leaflet/dist/leaflet.css";
@@ -9,7 +7,6 @@ import "leaflet/dist/leaflet.css";
 import { InfoBox } from './InfoBox';
 import { TableData } from './TableData';
 import { sortData } from './util';
-import { LineGraph } from './LineGraph';
 import { LineGraph1 } from './LineGraph1';
 
 
@@ -28,7 +25,7 @@ function App() {
 
   const [tableData, setTableData] = useState([]);
 
-  const [casesType, setCasesType] = useState("cases");
+  const [casesType] = useState("cases");
   const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([])
