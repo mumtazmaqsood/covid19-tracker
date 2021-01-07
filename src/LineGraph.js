@@ -94,6 +94,8 @@ export const LineGraph = ({ casesType }) => {
 
   return (
     <div>
+      
+      <h3>World Wide new Cases </h3>
       {data?.length > 0 && (
         <Line
           data={{
@@ -108,6 +110,12 @@ export const LineGraph = ({ casesType }) => {
           options={options}
         />
       )}
+      
+
+
+     
+
+
     </div>
   );
 }

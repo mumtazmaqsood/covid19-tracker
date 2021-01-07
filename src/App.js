@@ -1,4 +1,3 @@
-
 import './App.css';
 import NavBar from './components/NavBar';
 import InfoPanel from './components/InfoPanel';
@@ -11,7 +10,7 @@ import { InfoBox } from './InfoBox';
 import { TableData } from './TableData';
 import { sortData } from './util';
 import { LineGraph } from './LineGraph';
-import {LineGraph1} from './LineGraph1';
+import { LineGraph1 } from './LineGraph1';
 
 
 import Map from './Map';
@@ -19,20 +18,20 @@ import Map from './Map';
 
 function App() {
 
-  const [countries, setCountries] = useState([]);
-
+  
   //here is the state in dropdown 
   const [country, setCountry] = useState("worldwide");
-
   //here is state of individual country
   const [countryInfo, setCountryInfo] = useState({});
+
+  const [countries, setCountries] = useState([]);
 
   const [tableData, setTableData] = useState([]);
 
   const [casesType, setCasesType] = useState("cases");
-  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
-  const[mapCountries, setMapCountries] = useState([])
+  const [mapCountries, setMapCountries] = useState([])
 
 
   //first time it is not loading worldwide data here is the solution
@@ -72,7 +71,7 @@ function App() {
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
     setCountry(countryCode);
-
+    //console.log("COUNTRY CODE", country)
     //if in dropdown worldwide is selected it fetch all countries data 
     //else according to given country code
     const url =
@@ -83,20 +82,31 @@ function App() {
     await fetch(url)
       .then(response => response.json())
       .then(data => {
-        setCountry(countryCode);  //all data from the country response
+        setCountry(countryCode);  //all data from the country response 
+        console.log("COUNTRY CODE", country)
         setCountryInfo(data);
-
+        console.log("DATA", data)
+        //----------------this code is handling dropmenu if 2nd time we need to select
+        //worldwide , it has not lat & lng parameters then it shows error 
+        if(countryCode === "worldwide"){
+          setMapCenter({lat: 34.80746, lng: -40.4796 });
+          setMapZoom(2); 
+           
+        }
+        //-----------------
+        else{
         setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(4);
+        setMapZoom(3);
+        }
+        //setCountry("")
       });
 
   };
 
-  console.log("countryinfor", countryInfo);
+  
 
   return (
     <div className="app">
-
       {/*right panel of the app  */}
       <Card className="app_left">
         <CardContent>
@@ -104,11 +114,13 @@ function App() {
           <TableData countries={tableData} />
           <h3>World Wide new Cases {casesType} </h3>
           {/* <LineGraph casesType={casesType} /> */}
-          <LineGraph1 casesType={casesType}  />
+          <LineGraph1 casesType={casesType} />
         </CardContent>
 
       </Card>
 
+
+      
       <div className="app_right">
         <div className="app_header">
           <h1>Covid-19 Tracker</h1>
@@ -134,6 +146,7 @@ function App() {
 
         <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
+
 
       
     </div>
