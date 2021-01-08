@@ -9,13 +9,13 @@ import { TableData } from './TableData';
 import { sortData } from './util';
 import { LineGraph1 } from './LineGraph1';
 
-
+import { prettyPrintStat } from './util';
 import Map from './Map';
 
 
 function App() {
 
-  
+
   //here is the state in dropdown 
   const [country, setCountry] = useState("worldwide");
   //here is state of individual country
@@ -25,8 +25,8 @@ function App() {
 
   const [tableData, setTableData] = useState([]);
 
-  const [casesType] = useState("cases");
-  const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796 });
+  const [casesType, setCaesType] = useState("cases");
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([])
 
@@ -56,7 +56,8 @@ function App() {
 
           const sortedData = sortData(data);
           setTableData(sortedData);
-          setMapCountries(data)
+          setMapCountries(data);
+          console.log("map countries data", data); //this data is also passing to map
           setCountries(countries);
         });
 
@@ -85,22 +86,22 @@ function App() {
         console.log("DATA", data)
         //----------------this code is handling dropmenu if 2nd time we need to select
         //worldwide , it has not lat & lng parameters then it shows error 
-        if(countryCode === "worldwide"){
-          setMapCenter({lat: 34.80746, lng: -40.4796 });
-          setMapZoom(2); 
-           
+        if (countryCode === "worldwide") {
+          setMapCenter({ lat: 34.80746, lng: -40.4796 });
+          setMapZoom(2);
+
         }
         //-----------------
-        else{
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(3);
+        else {
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+          setMapZoom(3);
         }
         //setCountry("")
       });
 
   };
 
-  
+
 
   return (
     <div className="app">
@@ -117,7 +118,7 @@ function App() {
       </Card>
 
 
-      
+
       <div className="app_right">
         <div className="app_header">
           <h1>Covid-19 Tracker</h1>
@@ -133,20 +134,39 @@ function App() {
 
         {/* code for infobox compnent */}
         <div className="app_stats">
-          <InfoBox title="Cornovirus cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
-          <InfoBox title="Recoverd" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-          <InfoBox title="Total Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          <InfoBox
+            onClick={e => setCaesType("cases") }
+            title="Cornovirus cases"
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={prettyPrintStat(countryInfo.cases)}
+          />
+          <InfoBox
+            onClick = { e =>setCaesType("recovered")}
+            title="Recoverd"
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={prettyPrintStat(countryInfo.recovered)}
+          />
+          <InfoBox
+          onClick={ e =>setCaesType("deaths")} 
+          title="Total Deaths"
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)}
+          />
         </div>
-
         {/* --------End Info Component*/}
 
 
-        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
-        mumtaz.maqsood@yahoo.com
+        <Map 
+        casesType={casesType} 
+        countries={mapCountries} 
+        center={mapCenter} 
+        zoom={mapZoom} 
+        />
+
       </div>
 
 
-      
+
     </div>
   );
 }

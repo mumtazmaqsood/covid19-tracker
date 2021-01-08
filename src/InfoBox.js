@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
+import './infoBox.css'
 
-export const InfoBox = ({ title, cases, total }) => {
+export const InfoBox = ({ title, cases, total, ...props }) => {
     return (
-        <Card className="infoBox">
+        <Card onClick= {props.onClick} className="infoBox">
             <CardContent>
                 {/*Title ==> Corona Virus cases*/}
                 <Typography className="infoBox_title" color="textSecondary"> {title} </Typography>

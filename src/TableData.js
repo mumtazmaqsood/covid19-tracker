@@ -1,5 +1,6 @@
 import React from 'react';
 import './TableData.css';
+import numeral from 'numeral';
 
 
 export const TableData = ({ countries }) => {
@@ -8,7 +9,7 @@ export const TableData = ({ countries }) => {
                 {countries.map(({ country, cases }, ind) => (
                     <tr key={ind}>
                         <td>{country}</td>
-                        <td>{cases}</td>
+                        <td>{numeral(cases).format("0,0")}</td>
                     </tr>
 
                 ))}

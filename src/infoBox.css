@@ -1,0 +1,30 @@
+
+
+/* infobox is inside flex box, when flex is 1 , 
+all box laid parralled each other wihtout spacing 
+this is for TOP 3 boxes toalcases, deaths, etc*/
+.infoBox {
+    flex: 1;
+}
+
+/* for giving spacing between 3 boxes except last one */
+
+.infoBox:not(:last-child){
+    margin-right: 15px;
+}
+
+.infoBox_cases{
+    color:rgb(149, 34, 34);
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* import used here bcz martial ui is used , it will overwrite martial ui css */
+.infoBox_total {
+    color: #06090c;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    margin-top: 15px !important;
+}
