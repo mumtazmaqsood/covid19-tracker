@@ -15,7 +15,6 @@ import Map from './Map';
 
 function App() {
 
-
   //here is the state in dropdown 
   const [country, setCountry] = useState("worldwide");
   //here is state of individual country
@@ -60,7 +59,6 @@ function App() {
           console.log("map countries data", data); //this data is also passing to map
           setCountries(countries);
         });
-
     }
     getCountriesData();
   }, [])
@@ -94,14 +92,12 @@ function App() {
         //-----------------
         else {
           setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-          setMapZoom(3);
+          setMapZoom(5);
         }
         //setCountry("")
       });
 
   };
-
-
 
   return (
     <div className="app">
@@ -110,9 +106,9 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <TableData countries={tableData} />
-          <h3>World Wide new Cases {casesType} </h3>
+          <h3 className="lineGraph">World Wide new Cases {casesType} </h3>
           {/* <LineGraph casesType={casesType} /> */}
-          <LineGraph1 casesType={casesType} />
+          <LineGraph1  casesType={casesType} />
         </CardContent>
 
       </Card>
@@ -135,38 +131,38 @@ function App() {
         {/* code for infobox compnent */}
         <div className="app_stats">
           <InfoBox
-            onClick={e => setCaesType("cases") }
+            isRed
+            active={casesType === "cases"}
+            onClick={e => setCaesType("cases")}
             title="Cornovirus cases"
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={prettyPrintStat(countryInfo.cases)}
           />
+
           <InfoBox
-            onClick = { e =>setCaesType("recovered")}
+            active={casesType === "recovered"}
+            onClick={e => setCaesType("recovered")}
             title="Recoverd"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
-          onClick={ e =>setCaesType("deaths")} 
-          title="Total Deaths"
+            isRed
+            active={casesType === "deaths"}
+            onClick={e => setCaesType("deaths")}
+            title="Total Deaths"
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
         {/* --------End Info Component*/}
-
-
-        <Map 
-        casesType={casesType} 
-        countries={mapCountries} 
-        center={mapCenter} 
-        zoom={mapZoom} 
+        <Map
+          casesType={casesType}
+          countries={mapCountries}
+          center={mapCenter}
+          zoom={mapZoom}
         />
-
       </div>
-
-
-
     </div>
   );
 }

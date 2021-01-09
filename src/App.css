@@ -18,18 +18,25 @@ body {
 }
 
 
+.lineGraph{
+ 
+  padding:10px;
+}
 
 .app_header{
   display: flex;
   align-items: center;
   margin: 5px;
   justify-content: space-between;
+  
 }
 
 .app_stats {
   display: flex;
   justify-content: space-between;
+  
 }
+
 
 @media (max-width: 990px) {
   .app{
