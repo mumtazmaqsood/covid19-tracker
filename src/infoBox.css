@@ -3,6 +3,7 @@ all box laid parralled each other wihtout spacing
 this is for TOP 3 boxes toalcases, deaths, etc*/
 .infoBox {
     flex: 1;
+    cursor: pointer;
 }
 
 /* for giving spacing between 3 boxes except last one */
