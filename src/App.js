@@ -26,7 +26,7 @@ function App() {
 
   const [casesType, setCaesType] = useState("cases");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
-  const [mapZoom, setMapZoom] = useState(3);
+  const [mapZoom, setMapZoom] = useState(2);
   const [mapCountries, setMapCountries] = useState([])
 
 
@@ -86,13 +86,13 @@ function App() {
         //worldwide , it has not lat & lng parameters then it shows error 
         if (countryCode === "worldwide") {
           setMapCenter({ lat: 34.80746, lng: -40.4796 });
-          setMapZoom(2);
+          setMapZoom(3);
 
         }
         //-----------------
         else {
           setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-          setMapZoom(5);
+          setMapZoom(3);
         }
         //setCountry("")
       });
